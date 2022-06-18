@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LeaveManagementModelStoreContainer" CdmEntityContainer="LeaveManagementEntities">
+    <EntitySetMapping Name="EmployeeDetails">
+      <EntityTypeMapping TypeName="LeaveManagementModel.EmployeeDetail">
+        <MappingFragment StoreEntitySet="EmployeeDetails">
+          <ScalarProperty Name="Empid" ColumnName="Empid" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="EmpDesignation" ColumnName="EmpDesignation" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="WorkCity" ColumnName="WorkCity" />
+          <ScalarProperty Name="EmaiID" ColumnName="EmaiID" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaveTypes">
+      <EntityTypeMapping TypeName="LeaveManagementModel.LeaveType">
+        <MappingFragment StoreEntitySet="LeaveType">
+          <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+          <ScalarProperty Name="LeaveName" ColumnName="LeaveName" />
+          <ScalarProperty Name="LeaveDescription" ColumnName="LeaveDescription" />
+          <ScalarProperty Name="NumberOfDaysAllowed" ColumnName="NumberOfDaysAllowed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="LeaveManagementModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogin">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManagerLogins">
+      <EntityTypeMapping TypeName="LeaveManagementModel.ManagerLogin">
+        <MappingFragment StoreEntitySet="ManagerLogin">
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaveApplications">
+      <EntityTypeMapping TypeName="LeaveManagementModel.LeaveApplication">
+        <MappingFragment StoreEntitySet="LeaveApplication">
+          <ScalarProperty Name="Statuss" ColumnName="Statuss" />
+          <ScalarProperty Name="DateOfApproval" ColumnName="DateOfApproval" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
+          <ScalarProperty Name="DateOfApplication" ColumnName="DateOfApplication" />
+          <ScalarProperty Name="LeaveTypeName" ColumnName="LeaveTypeName" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Application_id" ColumnName="Application_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0d72048eb34a42838a26fb3adb81fb8f" Name="Diagram1">
+        <EntityTypeShape EntityType="LeaveManagementModel.EmployeeDetail" Width="1.5" PointX="0.625" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaveManagementModel.LeaveType" Width="1.5" PointX="6" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeaveManagementModel.UserLogin" Width="1.5" PointX="2.5" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="LeaveManagementModel.FK__UserLogin__Id__32E0915F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LeaveManagementModel.ManagerLogin" Width="1.5" PointX="2.5" PointY="0.625" />
+        <AssociationConnector Association="LeaveManagementModel.FK__ManagerLo__EmpID__47DBAE45" />
+        <EntityTypeShape EntityType="LeaveManagementModel.LeaveApplication" Width="1.5" PointX="4.375" PointY="1" />
+        <AssociationConnector Association="LeaveManagementModel.FK__LeaveAppl__Emplo__534D60F1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

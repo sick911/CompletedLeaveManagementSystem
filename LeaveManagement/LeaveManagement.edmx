@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LeaveManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EmployeeDetails">
+          <Key>
+            <PropertyRef Name="Empid" />
+          </Key>
+          <Property Name="Empid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpName" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="EmpDesignation" Type="varchar" MaxLength="40" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="DeptName" Type="varchar" MaxLength="30" />
+          <Property Name="WorkCity" Type="varchar" MaxLength="30" />
+          <Property Name="EmaiID" Type="varchar" MaxLength="40" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="40" />
+          <Property Name="ManagerID" Type="int" />
+        </EntityType>
+        <EntityType Name="LeaveApplication">
+          <Key>
+            <PropertyRef Name="Application_id" />
+          </Key>
+          <Property Name="Application_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+          <Property Name="LeaveTypeName" Type="varchar" MaxLength="20" />
+          <Property Name="DateOfApplication" Type="date" />
+          <Property Name="NumberOfDays" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Comments" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfApproval" Type="date" />
+          <Property Name="Statuss" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="LeaveTypeId" />
+          </Key>
+          <Property Name="LeaveTypeId" Type="int" Nullable="false" />
+          <Property Name="LeaveName" Type="varchar" MaxLength="20" />
+          <Property Name="LeaveDescription" Type="varchar" MaxLength="40" />
+          <Property Name="NumberOfDaysAllowed" Type="int" />
+        </EntityType>
+        <EntityType Name="ManagerLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="30" />
+          <Property Name="Password" Type="varchar" MaxLength="30" />
+          <Property Name="EmpID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="30" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="Id" Type="int" />
+        </EntityType>
+        <Association Name="FK__LeaveAppl__Emplo__534D60F1">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="LeaveApplication" Type="Self.LeaveApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Empid" />
+            </Principal>
+            <Dependent Role="LeaveApplication">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ManagerLo__EmpID__47DBAE45">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="ManagerLogin" Type="Self.ManagerLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Empid" />
+            </Principal>
+            <Dependent Role="ManagerLogin">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserLogin__Id__32E0915F">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetails" Multiplicity="0..1" />
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Empid" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeaveManagementModelStoreContainer">
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveApplication" EntityType="Self.LeaveApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveType" EntityType="Self.LeaveType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManagerLogin" EntityType="Self.ManagerLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__LeaveAppl__Emplo__534D60F1" Association="Self.FK__LeaveAppl__Emplo__534D60F1">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="LeaveApplication" EntitySet="LeaveApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ManagerLo__EmpID__47DBAE45" Association="Self.FK__ManagerLo__EmpID__47DBAE45">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="ManagerLogin" EntitySet="ManagerLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserLogin__Id__32E0915F" Association="Self.FK__UserLogin__Id__32E0915F">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LeaveManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeeDetail">
+          <Key>
+            <PropertyRef Name="Empid" />
+          </Key>
+          <Property Name="Empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmpDesignation" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="DeptName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WorkCity" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmaiID" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerID" Type="Int32" />
+          <NavigationProperty Name="UserLogins" Relationship="Self.FK__UserLogin__Id__32E0915F" FromRole="EmployeeDetails" ToRole="UserLogin" />
+          <NavigationProperty Name="ManagerLogins" Relationship="LeaveManagementModel.FK__ManagerLo__EmpID__47DBAE45" FromRole="EmployeeDetail" ToRole="ManagerLogin" />
+          <NavigationProperty Name="LeaveApplications" Relationship="LeaveManagementModel.FK__LeaveAppl__Emplo__534D60F1" FromRole="EmployeeDetail" ToRole="LeaveApplication" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="LeaveTypeId" />
+          </Key>
+          <Property Name="LeaveTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LeaveName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LeaveDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="NumberOfDaysAllowed" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="Id" Type="Int32" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="Self.FK__UserLogin__Id__32E0915F" FromRole="UserLogin" ToRole="EmployeeDetails" />
+        </EntityType>
+        <Association Name="FK__UserLogin__Id__32E0915F">
+          <End Role="EmployeeDetails" Type="Self.EmployeeDetail" Multiplicity="0..1" />
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetails">
+              <PropertyRef Name="Empid" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeaveManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeeDetails" EntityType="Self.EmployeeDetail" />
+          <EntitySet Name="LeaveTypes" EntityType="Self.LeaveType" />
+          <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
+          <AssociationSet Name="FK__UserLogin__Id__32E0915F" Association="Self.FK__UserLogin__Id__32E0915F">
+            <End Role="EmployeeDetails" EntitySet="EmployeeDetails" />
+            <End Role="UserLogin" EntitySet="UserLogins" />
+          </AssociationSet>
+          <EntitySet Name="ManagerLogins" EntityType="LeaveManagementModel.ManagerLogin" />
+          <AssociationSet Name="FK__ManagerLo__EmpID__47DBAE45" Association="LeaveManagementModel.FK__ManagerLo__EmpID__47DBAE45">
+            <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+            <End Role="ManagerLogin" EntitySet="ManagerLogins" />
+          </AssociationSet>
+          <EntitySet Name="LeaveApplications" EntityType="LeaveManagementModel.LeaveApplication" />
+          <AssociationSet Name="FK__LeaveAppl__Emplo__534D60F1" Association="LeaveManagementModel.FK__LeaveAppl__Emplo__534D60F1">
+            <End Role="EmployeeDetail" EntitySet="EmployeeDetails" />
+            <End Role="LeaveApplication" EntitySet="LeaveApplications" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ManagerLogin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EmpID" Type="Int32" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="LeaveManagementModel.FK__ManagerLo__EmpID__47DBAE45" FromRole="ManagerLogin" ToRole="EmployeeDetail" />
+        </EntityType>
+        <Association Name="FK__ManagerLo__EmpID__47DBAE45">
+          <End Type="LeaveManagementModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="0..1" />
+          <End Type="LeaveManagementModel.ManagerLogin" Role="ManagerLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetail">
+              <PropertyRef Name="Empid" />
+            </Principal>
+            <Dependent Role="ManagerLogin">
+              <PropertyRef Name="EmpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LeaveApplication">
+          <Key>
+            <PropertyRef Name="Application_id" />
+          </Key>
+          <Property Name="Application_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LeaveTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfApplication" Type="DateTime" Precision="0" />
+          <Property Name="NumberOfDays" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfApproval" Type="DateTime" Precision="0" />
+          <Property Name="Statuss" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmployeeDetail" Relationship="LeaveManagementModel.FK__LeaveAppl__Emplo__534D60F1" FromRole="LeaveApplication" ToRole="EmployeeDetail" />
+        </EntityType>
+        <Association Name="FK__LeaveAppl__Emplo__534D60F1">
+          <End Type="LeaveManagementModel.EmployeeDetail" Role="EmployeeDetail" Multiplicity="0..1" />
+          <End Type="LeaveManagementModel.LeaveApplication" Role="LeaveApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeDetail">
+              <PropertyRef Name="Empid" />
+            </Principal>
+            <Dependent Role="LeaveApplication">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LeaveManagementModelStoreContainer" CdmEntityContainer="LeaveManagementEntities">
+          <EntitySetMapping Name="EmployeeDetails">
+            <EntityTypeMapping TypeName="LeaveManagementModel.EmployeeDetail">
+              <MappingFragment StoreEntitySet="EmployeeDetails">
+                <ScalarProperty Name="Empid" ColumnName="Empid" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EmpDesignation" ColumnName="EmpDesignation" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="WorkCity" ColumnName="WorkCity" />
+                <ScalarProperty Name="EmaiID" ColumnName="EmaiID" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypes">
+            <EntityTypeMapping TypeName="LeaveManagementModel.LeaveType">
+              <MappingFragment StoreEntitySet="LeaveType">
+                <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+                <ScalarProperty Name="LeaveName" ColumnName="LeaveName" />
+                <ScalarProperty Name="LeaveDescription" ColumnName="LeaveDescription" />
+                <ScalarProperty Name="NumberOfDaysAllowed" ColumnName="NumberOfDaysAllowed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogins">
+            <EntityTypeMapping TypeName="LeaveManagementModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManagerLogins">
+            <EntityTypeMapping TypeName="LeaveManagementModel.ManagerLogin">
+              <MappingFragment StoreEntitySet="ManagerLogin">
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveApplications">
+            <EntityTypeMapping TypeName="LeaveManagementModel.LeaveApplication">
+              <MappingFragment StoreEntitySet="LeaveApplication">
+                <ScalarProperty Name="Statuss" ColumnName="Statuss" />
+                <ScalarProperty Name="DateOfApproval" ColumnName="DateOfApproval" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="NumberOfDays" ColumnName="NumberOfDays" />
+                <ScalarProperty Name="DateOfApplication" ColumnName="DateOfApplication" />
+                <ScalarProperty Name="LeaveTypeName" ColumnName="LeaveTypeName" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Application_id" ColumnName="Application_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
